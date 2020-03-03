@@ -1,0 +1,25 @@
+{
+	"code": [{
+		"key": "drp_1",
+		"text": "RTV2",
+		"text2": "text2"
+	}, {
+		"key": "drp_2",
+		"text": "Merch Transfer2"
+	}, {
+		"key": "drp_3",
+		"text": "Buyer Destroy2"
+	}, {
+		"key": "drp_4",
+		"text": "Destroy for Credit2"
+	},
+	 {
+      "key": "drp_6",
+          "text" :"Buyer Salvage"    
+  }, 
+  {
+      "key": "drp_7",
+          "text" :"Salvage for Credit"    
+  }
+	]
+}

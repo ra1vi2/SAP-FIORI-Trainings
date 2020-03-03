@@ -1,0 +1,59 @@
+<mvc:View controllerName="int_test.int_test.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="Title changed">
+					<content>
+						<l:VerticalLayout>
+						<Text id="idText1" text="{oModel>dynamicText}"></Text>
+						<Select id="idCombo" width="50%" items="{path: 'oModel>/code'}">
+							<items>
+								<core:ListItem text="{oModel>text}" key="{oModel>key}"/>
+							</items>
+						</Select>
+						<Button text="showMsg" press="onPress"></Button>
+						<l:HorizontalLayout>
+							<List id="list1" width="250%" items="{path: 'list>/code'}">
+							<items>
+								<ObjectListItem title="{list>text}" type="Navigation" press="onListItemPress" />
+							</items>
+						</List>
+						<!--<Table id="list1" items="{ path: 'list>/code' }">
+							<columns>
+								<Column width="12em">
+									<Text text="Product"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Supplier"/>
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="false" >
+									<Text text="Dimensions"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{list>key}"/>
+										<Text text="{list>text2}" />
+										<Text text="{list>key}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>-->
+						
+					<Panel id="panelid" width="50%"  >
+						<Label text="text" />
+						<Input value="{listdata>text}" />
+						
+						<Label text="Key" />
+						<Input value="{listdata>key}" />
+					</Panel>	
+						</l:HorizontalLayout>
+						</l:VerticalLayout>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
