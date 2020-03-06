@@ -1,24 +1,59 @@
-<mvc:View controllerName="int_test.int_test.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
-	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" controllerName="int_test.int_test.controller.View1" displayBlock="true">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page id="page" title="Title changed">
+				<Page id="page" title="{i18n>title}">
 					<content>
 						<l:VerticalLayout>
-						<Text id="idText1" text="{oModel>dynamicText}"></Text>
-						<Select id="idCombo" width="50%" items="{path: 'oModel>/code'}">
+							<l:HorizontalLayout>
+								<Label id="idText1" text="{path: 'model>/dynamicText' ,  formatter: '.formatter.formatTest'}" labelFor="idCombo" class="sapUiResponsiveMargin"/>
+								<Select id="idCombo" width="auto" items="{path: 'oModel>/code'}" class="sapUiSmallMarginEnd">
+									<items>
+										<core:ListItem text="{oModel>text}" key="{oModel>key}"/>
+									</items>
+								</Select>
+								<Button text="showMsg" press="onPress"/>
+							</l:HorizontalLayout>
+							<l:HorizontalLayout>
+								<Label id="id1" text="Currency" labelFor="idCure" class="sapUiResponsiveMargin"/>
+								<Input id="idCure" width="200px" enabled="{model>/enabled}" value="{ path: 'model>/dynamicText' } " class="sapUiSmallMarginEnd"/>
+								<CheckBox id="idCheck" selected="{model>/enabled}"/>
+							</l:HorizontalLayout>
+							<Label id="id2" text="Email" labelFor="idMail"/>
+							<Input id="idMail" width="200px" value="{ path: 'model>/dynamicText', formatter: '.formatter.formatMonth' }"/>
+							<Text id="idAddress" text="{hModel>/fName} {hModel&gt;/lName}"/>
+							<Text id="idAdd" text="{hModel>/address/street} {hModel&gt;/address/state}"/>
+						</l:VerticalLayout>
+						<List noDataText="Drop list items here" id="list1" items="{/SEPM_I_SalesOrder_E}">
 							<items>
-								<core:ListItem text="{oModel>text}" key="{oModel>key}"/>
-							</items>
-						</Select>
-						<Button text="showMsg" press="onPress"></Button>
-						<l:HorizontalLayout>
-							<List id="list1" width="250%" items="{path: 'list>/code'}">
-							<items>
-								<ObjectListItem title="{list>text}" type="Navigation" press="onListItemPress" />
+								<ObjectListItem title="{ID}"
+								 number="{SalesOrder}"
+							/>
 							</items>
 						</List>
+						<f:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form0">
+						    <f:content>
+						        <core:Title text="Form" id="title0"/>
+						        <Label text="User ID" id="label0"/>
+						        <Input width="30em" id="idUserid" required="true"/>
+						       
+						        <Label text="Password" id="label1"/>
+						        <Input width="30em" id="idPass" type="Password" required="true"/>
+						        <Label text=""/>
+						        <Button text="Login" width="12em" press="onPress"/>
+						        
+						        <Label text=""/>
+						        <Text id="idTextDate" text=""/>
+						        </f:content>
+						</f:SimpleForm>
+					
+						<!--	<List id="list1" width="100%" items="{path: 'list>/code'}">
+							<items>
+								<ObjectListItem title="{list>text}" number="{list>amount}" numberState="{= ${list>amount} > 50 ? 'Warning' : 'Information'}"
+									type="Navigation" press="onListItemPress"/>
+							</items>
+						</List>
+					-->
 						<!--<Table id="list1" items="{ path: 'list>/code' }">
 							<columns>
 								<Column width="12em">
@@ -41,16 +76,12 @@
 								</ColumnListItem>
 							</items>
 						</Table>-->
-						
-					<Panel id="panelid" width="50%"  >
-						<Label text="text" />
-						<Input value="{listdata>text}" />
-						
-						<Label text="Key" />
-						<Input value="{listdata>key}" />
-					</Panel>	
-						</l:HorizontalLayout>
-						</l:VerticalLayout>
+						<!--	<Panel id="panelid" width="50%" >
+									<Label text="text"/>
+									<Input value="{listdata>text}"/>
+									<Label text="Key"/>
+									<Input value="{listdata>key}"/>
+								</Panel>-->
 					</content>
 				</Page>
 			</pages>
