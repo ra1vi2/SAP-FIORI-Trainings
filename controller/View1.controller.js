@@ -2,19 +2,18 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageToast",
-	"int_test/int_test/util/formatter"
+	"int_test/int_test/util/formatter",
+	"sap/m/ColumnListItem"
 	//"int_test/util/formatter"
-], function (Controller, JSONModel , MessageToast,formatter) {
+], function (Controller, JSONModel , MessageToast,formatter,ColumnListItem) {
 	"use strict";
 
 	return Controller.extend("int_test.int_test.controller.View1", {
+		formatter : formatter,
 		onInit: function () {
 			//  alert("in initialization");
-			
-			formatter = formatter ; 
-			
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true) ;
-			
+			this.idUserid = this.getView().byId("idUserid");
 			var hierModel = new JSONModel({
 			fName : "Ravi",
 			lName : "Verma",
@@ -30,18 +29,18 @@ sap.ui.define([
 		//	
 		//	this.getView().byId("list1").setModel(oDataModel);
 			
-			this.getView().byId("idAddress").setModel(hierModel,"hModel");
-			this.getView().byId("idAdd").setModel(hierModel,"hModel");
+		//	this.getView().byId("idAddress").setModel(hierModel,"hModel");
+		//	this.getView().byId("idAdd").setModel(hierModel,"hModel");
 
 			 var oModel_ = new JSONModel({
-			 	dynamicText : "This is dynamic Label" ,
+			 	dynamicText : "1" ,
 			 	enabled : true,
 			 	dynamic2 : "this is second",
 			 	sjdnc: "sdc"
 			 	});
            this.getView().setModel(oModel_,"model");
 			var oModel = this.getOwnerComponent().getModel("testdata");
-			this.getView().byId("idCombo").setModel(oModel, "oModel");
+	//		this.getView().byId("idCombo").setModel(oModel, "oModel");
 		   // var listModel = this.getOwnerComponent().getModel("listdata");
 		
 		//	this.getView().byId("list1").setModel(listModel, "list");
@@ -75,6 +74,73 @@ sap.ui.define([
 		
 			MessageToast.show("Login Success!");
 		}
+    },
+    
+    onValueHelp:function(oEvent)
+    {
+    	 var oColModel = this.getOwnerComponent()
+        .getModel("user_col");
+        
+      this.oUserIDmodel = this.getOwnerComponent().getModel("listdata");
+      
+      this.getView().byId("idUserid")
+        .setModel(this.oUserIDmodel);
+      var aCols = oColModel.getData()
+        .cols;
+        this._oValueHelpDialog = sap.ui.xmlfragment("int_test/int_test/fragments/useridValueHelp", this);
+      this.getView()
+        .addDependent(this._oValueHelpDialog);
+        var help_tab = this._oValueHelpDialog.getTable();
+    //  this._oValueHelpDialog.getTableAsync()
+       // .then(function (oTable) {
+          help_tab.setModel(this.oUserIDmodel);
+          help_tab.setModel(oColModel, "columns");
+          if (help_tab.bindRows) {
+            help_tab.bindAggregation("rows", "/code");
+          }
+          if (help_tab.bindItems) {
+            help_tab.bindAggregation("items", "/code", function () {
+              return new ColumnListItem({
+                cells: aCols.map(function (column) {
+                  return new sap.m.Label({
+                    text: "{" + column.template + "}"
+                  });
+                })
+              });
+            });
+          }
+          this._oValueHelpDialog.update();
+       // }.bind(this));
+      
+     /* this._oValueHelpDialog.setTokens([
+          new sap.m.Token({
+            key: this.idUserid.getSelectedKey(),
+            text: this.idUserid.getValue()
+          })
+        ]);*/
+       
+     this._oValueHelpDialog.setTokens(this.idUserid.getTokens());
+      this._oValueHelpDialog.open();
+    },
+    onValueHelpOkPress: function (oEvent) {
+      var aTokens = oEvent.getParameter("tokens");
+     this.idUserid.setTokens(aTokens);
+	//this.idUserid.setSelectedKey(aTokens[0].getKey());
+      this._oValueHelpDialog.close();
+    },
+   
+    selectionchange: function (oEvent) {
+      var aTokens = oEvent.getParameter("tokens");
+      this.idUserid.setSelectedKey(aTokens[0].getKey());
+      this._oValueHelpDialog.close();
+    },
+    onValueHelpCancelPress: function () {
+      this._oValueHelpDialog.close();
+    },
+    onValueHelpAfterClose: function () {
+      this._oValueHelpDialog.destroy();
     }
+    
+
 	});
 });

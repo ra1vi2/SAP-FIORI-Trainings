@@ -1,0 +1,10 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="int_test.int_test.controller.PanelView" displayBlock="true">
+	<Panel id="panelid" width="50%">
+		<Label text="text"/>
+		<Input value="{listdata>text}"/>
+		<Label text="Key"/>
+		<Input value="{listdata>key}"/>
+		<Button id="idPanelButton" text="Submit" press="onPanelPress" />
+	</Panel>
+</mvc:View>

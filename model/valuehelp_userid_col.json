@@ -1,0 +1,15 @@
+{
+  "cols": [
+    {
+      "label": "User ID",
+      "template": "key",
+      "width": "7rem"
+    },
+    {
+      "label": "Description",
+      "template": "text",
+      "width": "7rem"
+    }
+
+  ]
+}

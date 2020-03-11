@@ -28,6 +28,10 @@
 				"settings": {
 					"localUri": "localService/metadata.xml"
 				}
+			},
+			"user_col": {
+				"type": "JSON",
+				"uri": "model/valuehelp_userid_col.json"
 			}
 		}
 	},
@@ -93,14 +97,17 @@
 				},
 				"dataSource": "ZSOCDS_SRV",
 				"preload": true
+			},
+			"user_col": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "user_col",
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -112,15 +119,13 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [
-				{
-					"name": "TargetView1",
-					"pattern": "RouteView1",
-					"target": [
-						"TargetView1"
-					]
-				}
-			],
+			"routes": [{
+				"name": "TargetView1",
+				"pattern": "RouteView1",
+				"target": [
+					"TargetView1"
+				]
+			}],
 			"targets": {
 				"TargetView1": {
 					"viewType": "XML",
