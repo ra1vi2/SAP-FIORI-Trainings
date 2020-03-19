@@ -5,7 +5,7 @@
 			<pages>
 				<Page id="page" title="{i18n>title}">
 					<content>
-					<!--	<l:VerticalLayout>
+						<!--	<l:VerticalLayout>
 							<l:HorizontalLayout>
 								<Label id="idText1" text="{path: 'model>/dynamicText' }" labelFor="idCombo"
 									class="sapUiResponsiveMargin"/>
@@ -31,7 +31,7 @@
 								<ObjectListItem title="{ID}" number="{SalesOrder}"/>
 							</items>
 						</List>-->
-						<f:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form0">
+						<!--<f:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form0">
 							<f:content>
 								<core:Title text="Form" id="title0"/>
 								<Label text="User ID" id="label0"/>
@@ -45,14 +45,29 @@
 								<Text id="idTextDate" text=""/>
 							</f:content>
 						</f:SimpleForm>
-						<!--	<List id="list1" width="100%" items="{path: 'list>/code'}">
+						-->
+						<SegmentedButton id="idsegmentButton">
+							<Button  press="onListDisp" icon="sap-icon://save"></Button>
+							<Button text="button2" press="onTableDisp"></Button>
+						</SegmentedButton>
+					
+						<List id="list1" width="100%" items="{path: 'list>/code'}" visible="=${!Local>/visible}">
 							<items>
 								<ObjectListItem title="{list>text}" number="{list>amount}" numberState="{= ${list>amount} > 50 ? 'Warning' : 'Information'}"
 									type="Navigation" press="onListItemPress"/>
 							</items>
 						</List>
-					-->
-						<!--<Table id="list1" items="{ path: 'list>/code' }">
+						
+					<!--	<Table id="list1_table" items="{ path: 'list>/code' }" visible="{Local>/visible}">
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title text="Products" level="H2"/>
+										<ToolbarSpacer/>
+										<SearchField width="50%" class="sapUiSmallMargin" search="onSearchTable"/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
 							<columns>
 								<Column width="12em">
 									<Text text="Product"/>
@@ -60,7 +75,7 @@
 								<Column minScreenWidth="Tablet" demandPopin="true">
 									<Text text="Supplier"/>
 								</Column>
-								<Column minScreenWidth="Desktop" demandPopin="false" >
+								<Column minScreenWidth="Desktop" demandPopin="false">
 									<Text text="Dimensions"/>
 								</Column>
 							</columns>
@@ -68,13 +83,13 @@
 								<ColumnListItem>
 									<cells>
 										<Text text="{list>key}"/>
-										<Text text="{list>text2}" />
-										<Text text="{list>key}" />
+										<Text text="{list>text2}"/>
+										<Text text="{list>key}"/>
 									</cells>
 								</ColumnListItem>
 							</items>
 						</Table>-->
-						<mvc:XMLView viewName="int_test.int_test.view.PanelView" />
+						<!--<mvc:XMLView viewName="int_test.int_test.view.PanelView" />-->
 					</content>
 				</Page>
 			</pages>

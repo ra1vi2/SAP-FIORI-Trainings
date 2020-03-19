@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="int_test.int_test.controller.View2" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title_page2}" showNavButton="true" navButtonPress="onNavBack">
+					<content>
+						<Text text="Select Value : ">
+							
+						</Text>
+						<Text id="idSelectedText" text="" />
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -25,9 +25,17 @@ sap.ui.define([
 			}
 			});
 			
+			var visibleModel = new JSONModel(
+				{
+					visible : false ,
+					text : "text"
+				});
+			
+			this.getView().setModel(visibleModel,"Local");
+			
 		//	var oDataModel = new sap.ui.model.odata.v2.ODataModel();
 		//	
-		//	this.getView().byId("list1").setModel(oDataModel);
+		//this.getView().byId("list1").setModel(oDataModel);
 			
 		//	this.getView().byId("idAddress").setModel(hierModel,"hModel");
 		//	this.getView().byId("idAdd").setModel(hierModel,"hModel");
@@ -38,15 +46,13 @@ sap.ui.define([
 			 	dynamic2 : "this is second",
 			 	sjdnc: "sdc"
 			 	});
-           this.getView().setModel(oModel_,"model");
-			var oModel = this.getOwnerComponent().getModel("testdata");
+          // this.getView().setModel(oModel_,"model");
+		//	var oModel = this.getOwnerComponent().getModel("testdata");
 	//		this.getView().byId("idCombo").setModel(oModel, "oModel");
-		   // var listModel = this.getOwnerComponent().getModel("listdata");
+		   var listModel = this.getOwnerComponent().getModel("listdata");
+	    	this.getView().byId("list1").setModel(listModel, "list");
 		
-		//	this.getView().byId("list1").setModel(listModel, "list");
 		
-		//this.getView().setModel(oModel,"oModel");
-
 		},
 		
 		onListItemPress: function(oEvent)
@@ -54,12 +60,31 @@ sap.ui.define([
 			var oSelectedItem = oEvent.getSource();
 			var oContext = oSelectedItem.getBindingContext("list");
 			var sPath = oContext.getPath();
+			var index = sPath.charAt(6);
 			
+		
+	var data = 	this.getOwnerComponent().getModel("listdata").getData() ;
+			var text =	data.code[index].text ; 
+			
+		
+		//Routing
+		/**
+		 * /
+		 */
+		var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+    	oRouter.navTo("View2" , 
+    	{
+    		index: text
+    	}
+    	);
+		
+		
+		/*	
 			var oPanel = this.getView().byId("panelid");
 			oPanel.bindElement({
 				path : sPath,
 				model : "listdata"
-			});
+			}); */
 		},
 		
 		onPress: function(){
@@ -139,6 +164,45 @@ sap.ui.define([
     },
     onValueHelpAfterClose: function () {
       this._oValueHelpDialog.destroy();
+    },
+    
+    onSearchTable:function(oEvent)
+    {
+    	var query = oEvent.getParameter("query");
+    	var aFilter = [] ;
+    	
+    	if(query)
+    	{
+    	  var sorter = new sap.ui.model.Sorter("text", false);
+    	  var filter = new sap.ui.model.Filter("text", sap.ui.model.FilterOperator.Contains ,query );
+    	  aFilter.push(filter);
+    	}
+    	  var list = this.getView().byId("list1");
+    	  var listbinding = list.getBinding("items");
+    	  
+    	  listbinding.filter(aFilter);
+    	  //list.refreshAggregation("items");
+    	
+    },
+    
+    onListDisp:function()
+    {
+    	 this.getOwnerComponent().getRouter().navTo("View2");
+      	var LocalModel = this.getView().byId("list1").getModel("Local");
+    	LocalModel.getData().visible = false;
+    	LocalModel.refresh();
+        //this.getView().byId("list1_table").setVisible(true);
+    },
+    onTableDisp:function()
+    {
+    	var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+    	oRouter.navTo("View3");
+    	 this.getOwnerComponent().getRouter().navTo("View2");
+    	//this.getView().byId("list1").setVisible(true);
+    	var LocalModel = this.getView().byId("list1").getModel("Local");
+    	LocalModel.getData().visible = true;
+    	LocalModel.refresh();
+    	
     }
     
 
