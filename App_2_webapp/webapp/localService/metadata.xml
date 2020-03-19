@@ -1,0 +1,52 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZTEST_ODATA_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="salesorder" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="sonum"/>
+                </Key>
+                <Property Name="sonum" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="sodesc" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="HeadertoItemNav" Relationship="ZTEST_ODATA_SRV.HeadertoItemAss" FromRole="FromRole_HeadertoItemAss" ToRole="ToRole_HeadertoItemAss"/>
+            </EntityType>
+            <EntityType Name="ENT_XVBAK" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vbeln"/>
+                </Key>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Sales Document" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Created on" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erzet" Type="Edm.Time" Nullable="false" Precision="0" sap:label="Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ernam" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Created by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Angdt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Valid From" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="HeadertoItemAss" sap:content-version="1">
+                <End Type="ZTEST_ODATA_SRV.salesorder" Multiplicity="0..1" Role="FromRole_HeadertoItemAss"/>
+                <End Type="ZTEST_ODATA_SRV.ENT_XVBAK" Multiplicity="*" Role="ToRole_HeadertoItemAss"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HeadertoItemAss">
+                        <PropertyRef Name="sonum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HeadertoItemAss">
+                        <PropertyRef Name="Vbeln"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZTEST_ODATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="salesorderSet" EntityType="ZTEST_ODATA_SRV.salesorder" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ENT_XVBAKSet" EntityType="ZTEST_ODATA_SRV.ENT_XVBAK" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="HeadertoItemAssSet" Association="ZTEST_ODATA_SRV.HeadertoItemAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="salesorderSet" Role="FromRole_HeadertoItemAss"/>
+                    <End EntitySet="ENT_XVBAKSet" Role="ToRole_HeadertoItemAss"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZTEST_ODATA_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZTEST_ODATA_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

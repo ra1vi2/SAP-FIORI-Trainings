@@ -14,24 +14,12 @@
 			"version": "0.0.0"
 		},
 		"dataSources": {
-			"jsondata": {
-				"type": "JSON",
-				"uri": "model/testmodel.json"
-			},
-			"listdatasource": {
-				"type": "JSON",
-				"uri": "model/listdata.json"
-			},
 			"ZSOCDS_SRV": {
 				"uri": "/sap/opu/odata/sap/ZSOCDS_SRV/",
 				"type": "OData",
 				"settings": {
 					"localUri": "localService/metadata.xml"
 				}
-			},
-			"user_col": {
-				"type": "JSON",
-				"uri": "model/valuehelp_userid_col.json"
 			}
 		}
 	},
@@ -105,9 +93,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -119,18 +109,21 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "View2",
-				"pattern": "View2/{index}",
-				"target": [
-					"TargetView2"
-				]
-			},
-			{
-				"name":"View1",
-				"pattern": "",
-				"target":["TargetView1"]
-			}
+			"routes": [
+				{
+					"name": "View2",
+					"pattern": "View2/{index}",
+					"target": [
+						"TargetView2"
+					]
+				},
+				{
+					"name": "View1",
+					"pattern": "",
+					"target": [
+						"TargetView1"
+					]
+				}
 			],
 			"targets": {
 				"TargetView2": {
