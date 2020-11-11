@@ -1,0 +1,34 @@
+{
+  "code":[
+  
+  {
+      "key": "drp_1",
+          "text" :"RTV"    
+  }, 
+  {
+      "key": "drp_2",
+          "text" :"Merch Transfer"   
+  },
+   {
+      "key": "drp_3",
+          "text" :"Buyer Destroy"   
+  },
+    {
+      "key": "drp_4",
+          "text" :"Destroy for Credit"    
+  }, 
+    {
+      "key": "drp_5",
+          "text" :"Return to Depot"    
+  }, 
+    {
+      "key": "drp_6",
+          "text" :"Buyer Salvage"    
+  }, 
+  {
+      "key": "drp_7",
+          "text" :"Salvage for Credit"    
+  }
+  ]
+
+}

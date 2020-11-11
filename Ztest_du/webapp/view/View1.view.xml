@@ -1,0 +1,172 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	controllerName="com.ra1vi2.ducattest.Ztest_ducat.controller.View1"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+				 	<Label text="label" labelFor="productInput" />
+						<Input id="productInput" valueLiveUpdate="true" 
+						width="50%" type="Text" 
+						showValueHelp="true"
+						valueHelpRequest=".onValueHelpRequested"
+						>
+							
+						</Input>
+					
+					<!--	<Input id="productInput_" valueLiveUpdate="true" width="50%" enabled="{/enabled}" editable="{/enabled}">
+							
+						</Input>
+							<CheckBox id="check" selected="{mod>/enabled}" text="Check Box" />
+						<Select id="idCode1" width="50%" items="{path: 'DataModel>/code'}">
+							<items>
+								<core:ListItem text="{DataModel>text}" key="{DataModel>key}"/>
+							</items>
+						</Select>
+						<Button id="btn1" text="Click here" press="onpress"/>
+						<List noDataText="Drop list items here" id="list1" items="{/SEPM_I_SalesOrder_E}">
+							<items>
+								<ObjectListItem title="{ID}" 
+								number="{path: 'SalesOrder', formatter: '.formatter.SalesOrder'}" 
+								/>
+							</items>
+						</List>-->
+						
+						
+			<!--		<Table id="idProductsTable"
+						inset="false"
+							items="{
+						path: '/SEPM_I_SalesOrder_E',
+						sorter: {
+							path: 'SalesOrder'
+						}
+					}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Products" level="H2"/>
+					<ToolbarSpacer />
+					<ComboBox id="idPopinLayout"
+						placeholder="Popin layout options"
+						change="onPopinLayoutChanged">
+						<items>
+							<core:Item  text="Block"
+								key="Block"/>
+							<core:Item  text="Grid Large"
+								key="GridLarge"/>
+							<core:Item  text="Grid Small"
+								key="GridSmall"/>
+						</items>
+					</ComboBox>
+					<Label text="Sticky options:" />
+					<CheckBox text="ColumnHeaders"
+						select="onSelect"/>
+					<CheckBox text="HeaderToolbar"
+						select="onSelect"/>
+					<CheckBox text="InfoToolbar"
+						select="onSelect"/>
+					<ToggleButton id="toggleInfoToolbar"
+						text="Hide/Show InfoToolbar"
+						press="onToggleInfoToolbar" />
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<OverflowToolbar>
+				<Label text="Wide range of available products"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Product" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Supplier" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+				<Text text="Dimensions" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="Weight" />
+			</Column>
+			<Column
+				hAlign="End">
+				<Text text="Price" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{ID}"
+						text="{ID}"/>
+					<Text
+						text="{ID}" />
+					<Text
+						text="{Width} x {Depth} x {Height} {DimUnit}" />
+					<ObjectNumber
+						number="{WeightMeasure}"
+						unit="{WeightUnit}"
+						state="{
+							parts: [
+								{path: 'WeightMeasure'},
+								{path: 'WeightUnit'}
+							],
+							formatter: 'sap.m.sample.Table.Formatter.weightState'
+						}" />
+					<ObjectNumber
+							number="{
+								parts:[{path:'Price'},{path:'CurrencyCode'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {showMeasure: false}
+							}"
+							unit="{CurrencyCode}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>	-->
+	
+<!--	<viz:Popover id="idPopOver"></viz:Popover>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='bar'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{ID}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Store Name"
+                                value="{ID}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Revenue"
+                                value="{SalesOrder}" />
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{SalesOrder}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure"
+                        values="Revenue" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="Store Name" />
+                </viz:feeds>
+            </viz:VizFrame>-->
+						
+					
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+  xmlns="sap.ui.comp.valuehelpdialog"
+  xmlns:core="sap.ui.core">
+  <ValueHelpDialog
+    title="Material"
+    ok=".onValueHelpOkPress"
+    cancel=".onValueHelpCancelPress"
+    afterClose=".onValueHelpAfterClose"
+    supportMultiselect="false"
+    key="ID"
+    descriptionKey="ID"
+    contentWidth="200px"
+    selectionChange=".selectionchange"
+
+
+  >
+  </ValueHelpDialog>
+</core:FragmentDefinition>
